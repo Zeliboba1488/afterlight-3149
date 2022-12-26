@@ -15,5 +15,5 @@ public sealed class AfterlightCVars
         CVarDef.Create("afterlight.story_map_path", "/storydata.yml", CVar.SERVERONLY);
 
     public static readonly CVarDef<string> StoryBackupMapPath =
-        CVarDef.Create("afterlight.story_map_path", "/storyBack/storydata.yml", CVar.SERVERONLY);
+        CVarDef.Create("afterlight.story_map_backup_path", "/storyBack/storydata.yml", CVar.SERVERONLY);
 }

@@ -34,6 +34,9 @@ public sealed class StoryManagementSystem : EntitySystem
             if (!_mapLoader.TryLoad(newMap, _cfg.GetCVar(AfterlightCVars.StoryMapPath), out _))
             {
                 _chatManager.DispatchServerAnnouncement("Failed to load the game's story data. Please contact your server administrator!");
+#if DEBUG
+                _chatManager.DispatchServerAnnouncement("(Or if you're doing local development, ignore this message.)");
+#endif
             }
         }
         else if (ev.Old == GameRunLevel.InRound && _storyMap is not null)
