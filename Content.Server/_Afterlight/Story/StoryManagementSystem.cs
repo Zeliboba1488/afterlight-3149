@@ -27,6 +27,9 @@ public sealed class StoryManagementSystem : EntitySystem
 
     private void OnRunLevelChanged(GameRunLevelChangedEvent ev)
     {
+        if (!_cfg.GetCVar(AfterlightCVars.StoryEnabled))
+            return;
+
         if (ev.New == GameRunLevel.InRound)
         {
             var newMap = _map.CreateMap();

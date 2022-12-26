@@ -55,6 +55,7 @@ public static class PoolManager
         (CCVars.GameRoleTimers.Name, "false", false),
         (WorldgenCVars.WorldgenEnabled.Name, "false", false), // CITADEL EDIT
         (AfterlightCVars.ShipSpawningEnabled.Name, "false", false), // AFTERLIGHT EDIT
+        (AfterlightCVars.StoryEnabled.Name, "false", false), // AFTERLIGHT EDIT
     };
 
     private static int PairId;
