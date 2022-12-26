@@ -1,0 +1,11 @@
+﻿- type: worldgenConfig
+  id: AfterlightDefault
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - CitadelAsteroidsFallback
+        - CitadelFailsafe
+        - CitadelAsteroidsStandard
+    - type: ShipSpawning
+      loadedSpawnArea: 8
