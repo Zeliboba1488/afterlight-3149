@@ -82,6 +82,7 @@ public enum LogType
     EntitySpawn = 77,
 
     // Afterlight edits
-    ALSpawnVessel = -314900,
+    ALSpawnVessel = -3149000,
+    ALPlacedStructure = -3149001,
     // End afterlight edits
 }
