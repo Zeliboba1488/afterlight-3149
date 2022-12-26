@@ -12,4 +12,4 @@
     - type: StructurePlacement
       structures:
       - entity: AfterlightSurveyor
-        amountRange: 1, 11
+        amountRange: 1, 5
