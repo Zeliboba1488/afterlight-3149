@@ -47,7 +47,7 @@ public sealed class StoryManagementSystem : EntitySystem
             // Save the game if we leave round for any reason.
             _mapLoader.SaveMap(_storyMap.Value, _cfg.GetCVar(AfterlightCVars.StoryMapPath));
             // For good measure, do it again at a backup location.
-            _mapLoader.SaveMap(_storyMap.Value, $"{_cfg.GetCVar(AfterlightCVars.StoryBackupMapPath)}_{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+            _mapLoader.SaveMap(_storyMap.Value, $"{_cfg.GetCVar(AfterlightCVars.StoryBackupMapPath)}_{DateTime.Now:yyyy-M-dd_HH.mm.ss}");
 
             _storyMap = null;
         }
