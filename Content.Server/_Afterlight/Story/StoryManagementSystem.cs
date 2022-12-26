@@ -42,6 +42,8 @@ public sealed class StoryManagementSystem : EntitySystem
             _mapLoader.SaveMap(_storyMap.Value, _cfg.GetCVar(AfterlightCVars.StoryMapPath));
             // For good measure, do it again at a backup location.
             _mapLoader.SaveMap(_storyMap.Value, $"{_cfg.GetCVar(AfterlightCVars.StoryBackupMapPath)}_{DateTime.Now.ToString(CultureInfo.InvariantCulture)}");
+
+            _storyMap = null;
         }
     }
 }
