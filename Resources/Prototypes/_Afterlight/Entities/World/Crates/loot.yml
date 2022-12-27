@@ -62,3 +62,27 @@
         - id: BoxMRE
           amount: 1
           maxAmount: 2
+
+- type: entity
+  id: AfterlightCrateSalvageMachineGoodies
+  suffix: Filled, Salvage Chemistry, Afterlight
+  noSpawn: true # You should use SalvageMaterialCrateSpawner instead
+  parent: CrateGenericSteel
+  components:
+    - type: StorageFill
+      contents:
+        - id: CapacitorStockPart
+          amount: 1
+          maxAmount: 3
+        - id: ScanningModuleStockPart
+          amount: 1
+          maxAmount: 3
+        - id: MicroManipulatorStockPart
+          amount: 1
+          maxAmount: 3
+        - id: MicroLaserStockPart
+          amount: 1
+          maxAmount: 3
+        - id: MatterBinStockPart
+          amount: 1
+          maxAmount: 3
