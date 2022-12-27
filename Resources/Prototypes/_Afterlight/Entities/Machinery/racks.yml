@@ -1,0 +1,55 @@
+﻿- type: entity
+  id: BaseRack
+  parent: BaseStructure
+  placement:
+    mode: SnapgridCenter
+  name: server rack
+  description: It seems the idea of using racks of computers never goes out of fashion.
+  components:
+  - type: Clickable
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      - shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/metalbreak.ogg
+  - type: Sprite
+    sprite: "_Afterlight/Machines/rack_equipment.rsi"
+    layers:
+    - state: rack_base
+      offset: 0, 0.5
+    - state: rack_base_emissive
+      offset: 0, 0.5
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+    visuals:
+      - type: PowerDeviceVisualizer
+  - type: ApcPowerReceiver
+    powerLoad: 8000
+  - type: ExtensionCableReceiver
