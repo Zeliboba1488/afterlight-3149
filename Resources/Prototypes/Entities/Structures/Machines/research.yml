@@ -35,6 +35,7 @@
     range: 5
     sound:
       path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: AutoRenameResearchServer # AFTERLIGHT EDIT
 
 - type: entity
   id: BaseResearchAndDevelopmentPointSource
