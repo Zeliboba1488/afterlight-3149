@@ -20,6 +20,9 @@ public sealed class AutoRenameResearchServerSystem : EntitySystem
 
     private void OnTryRename(TryRenameEvent ev)
     {
+        if (Deleted(ev.Target) || Terminating(ev.Target))
+            return;
+
         var station = _station.GetOwningStation(ev.Target);
         if (station is null)
             return;
