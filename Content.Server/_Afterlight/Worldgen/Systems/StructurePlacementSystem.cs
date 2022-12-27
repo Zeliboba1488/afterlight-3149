@@ -44,18 +44,18 @@ public sealed class StructurePlacementSystem : EntitySystem
         {
             var toPlace = _random.Next(config.AmountRange.X, config.AmountRange.Y);
 
-            for (var i = 0; i < toPlace; i++)
+            while (toPlace != 0)
             {
                 var point = _random.PickAndTake(locations);
                 var fail = _map.FindGridsIntersecting(mapId, safetyBox.Translated(point)).Any();
                 if (fail)
                 {
-                    i--;
                     continue;
                 }
 
                 var ent = Spawn(config.Entity, new MapCoordinates(point, mapId));
                 _log.Add(LogType.ALPlacedStructure, LogImpact.Medium, $"Spawned {ToPrettyString(ent)} at {new MapCoordinates(point, mapId)} for {ToPrettyString(uid)}.");
+                toPlace--;
             }
         }
     }
