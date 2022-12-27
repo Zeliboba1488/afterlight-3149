@@ -83,6 +83,7 @@ namespace Content.Server.Solar.EntitySystems
         {
             // Initialize the sun to something random
             TowardsSun = MathHelper.TwoPi * _robustRandom.NextDouble();
+            return; // AFTERLIGHT EDIT
             SunAngularVelocity = Angle.FromDegrees(0.1 + ((_robustRandom.NextDouble() - 0.5) * 0.05));
         }
 
@@ -111,7 +112,17 @@ namespace Content.Server.Solar.EntitySystems
                 foreach (var (panel, xform) in EntityManager.EntityQuery<SolarPanelComponent, TransformComponent>())
                 {
                     TotalPanelPower += panel.MaxSupply * panel.Coverage;
-                    xform.WorldRotation = TargetPanelRotation;
+                    //AFTERLIGHT EDIT
+                    var direction = Math.Sign((TargetPanelRotation - xform.WorldRotation).Theta);
+                    var maxMovement = Angle.FromDegrees(5 * frameTime * direction);
+                    var intendedMove = xform.WorldRotation + maxMovement;
+                    var intendedMoveDir = Math.Sign((TargetPanelRotation - intendedMove).Theta);
+
+                    if (direction != intendedMoveDir)
+                        xform.WorldRotation = TargetPanelRotation;
+                    else
+                        xform.WorldRotation = intendedMove;
+                    //END AFTERLIGHT EDIT
                     _updateQueue.Enqueue(panel);
                 }
             }
