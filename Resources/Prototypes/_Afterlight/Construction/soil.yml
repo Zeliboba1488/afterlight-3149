@@ -29,7 +29,6 @@
           steps:
             - name: "a compostable plant"
               component: Produce
-              amount: 1
               icon: { sprite: Objects/Specific/Hydroponics/wheat.rsi, state: produce }
     - node: soil
       entity: hydroponicsSoil

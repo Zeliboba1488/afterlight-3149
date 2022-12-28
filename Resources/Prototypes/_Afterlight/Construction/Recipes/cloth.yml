@@ -9,9 +9,8 @@
             - !type:SetStackCount
               amount: 1
           steps:
-            - name: "two fiberous plants"
+            - name: "a fiberous plant"
               component: Fiberous
-              amount: 2
               icon: { sprite: Objects/Specific/Hydroponics/wheat.rsi, state: produce }
     - node: Cloth
       entity: MaterialCloth1
