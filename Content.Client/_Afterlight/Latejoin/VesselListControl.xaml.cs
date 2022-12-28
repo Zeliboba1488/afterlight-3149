@@ -58,8 +58,11 @@ public sealed partial class VesselListControl : BoxContainer
         var itemsToRemove = new List<ItemList.Item>();
         foreach (var (key, item) in VesselItemList.Select(x => ((EntityUid)x.Metadata!, x)))
         {
-            if (!_gameTicker.StationNames.ContainsKey(key))
+            if ((!_gameTicker.StationNames.ContainsKey(key)) ||
+                (_gameTicker.JobsAvailable[key].Values.Sum(x => x ?? 0) <= 0))
+            {
                 itemsToRemove.Add(item);
+            }
         }
 
         foreach (var item in itemsToRemove)
@@ -69,7 +72,7 @@ public sealed partial class VesselListControl : BoxContainer
 
         foreach (var (key, name) in _gameTicker.StationNames)
         {
-            if (VesselItemList.Any(x => ((EntityUid)x.Metadata!) == key))
+            if (VesselItemList.Any(x => ((EntityUid)x.Metadata!) == key) || _gameTicker.JobsAvailable[key].Values.Sum(x => x ?? 0) <= 0)
                 continue;
 
             var item = new ItemList.Item(VesselItemList)
