@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Power.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using JetBrains.Annotations;
@@ -33,7 +34,7 @@ namespace Content.Server.Research.Systems
         {
             foreach (var server in EntityQuery<ResearchServerComponent>())
             {
-                if (server.Id == id)
+                if (server.Id == id && CanRun(server.Owner))
                     return server;
             }
 
@@ -46,15 +47,7 @@ namespace Content.Server.Research.Systems
         /// <returns></returns>
         public string[] GetServerNames()
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
-            var list = new string[allServers.Length];
-
-            for (var i = 0; i < allServers.Length; i++)
-            {
-                list[i] = allServers[i].ServerName;
-            }
-
-            return list;
+            return EntityQuery<ResearchServerComponent>(true).Where(x => CanRun(x.Owner)).Select(x => x.ServerName).ToArray();
         }
 
         /// <summary>
@@ -63,15 +56,7 @@ namespace Content.Server.Research.Systems
         /// <returns></returns>
         public int[] GetServerIds()
         {
-            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
-            var list = new int[allServers.Length];
-
-            for (var i = 0; i < allServers.Length; i++)
-            {
-                list[i] = allServers[i].Id;
-            }
-
-            return list;
+            return EntityQuery<ResearchServerComponent>(true).Where(x => CanRun(x.Owner)).Select(x => x.Id).ToArray();
         }
 
         public override void Update(float frameTime)

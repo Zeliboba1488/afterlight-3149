@@ -156,8 +156,14 @@
     state: red-icon
   - type: Item
     sprite: Objects/Tools/crowbar.rsi
-    size: 10
+    size: 2
     heldPrefix: red
+  - type: Tool
+    speed: 0.5
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
 
 - type: entity
   name: multitool
@@ -274,7 +280,7 @@
   components:
   - type: RCD
     ammo: 0
-  
+
 - type: entity
   name: RCD Ammo
   parent: BaseItem

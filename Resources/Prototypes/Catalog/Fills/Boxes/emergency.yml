@@ -8,10 +8,12 @@
     contents:
       - id: ClothingMaskBreath
       - id: EmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Sprite
     layers:
       - state: internals
@@ -27,10 +29,12 @@
     contents:
       - id: ClothingMaskBreath
       - id: ExtendedEmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Sprite
     layers:
       - state: internals
@@ -47,10 +51,12 @@
     contents:
       - id: ClothingMaskGasSecurity
       - id: EmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Sprite
     layers:
       - state: internals
@@ -67,10 +73,12 @@
     contents:
       - id: ClothingMaskBreathMedical
       - id: EmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Sprite
     layers:
       - state: internals
@@ -92,10 +100,12 @@
     contents:
       - id: ClothingMaskBreath
       - id: EmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Tag
     tags:
       - BoxHug
@@ -110,10 +120,12 @@
     contents:
       - id: ClothingMaskGasSyndicate
       - id: ExtendedEmergencyOxygenTankFilled
-      - id: SpaceMedipen
       - id: EmergencyMedipen
       - id: Flare
       - id: FoodTinMRE
+      - id: CrowbarRed
+      - id: AfterlightSheetPlasma5
+      - id: SheetUranium1
   - type: Sprite
     layers:
       - state: internals

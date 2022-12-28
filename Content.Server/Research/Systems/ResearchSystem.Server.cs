@@ -161,6 +161,10 @@ public sealed partial class ResearchSystem
 
         if (!Resolve(uid, ref component))
             return;
+
+        if (!CanRun(uid))
+            return;
+
         component.Points += points;
         var ev = new ResearchServerPointsChangedEvent(uid, component.Points, points);
         foreach (var client in component.Clients)
