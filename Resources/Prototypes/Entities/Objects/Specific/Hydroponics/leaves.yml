@@ -17,6 +17,7 @@
         reagents:
         - ReagentId: THCOil
           Quantity: 5
+  - type: Fiberous
 
 - type: entity
   name: dried cannabis leaves

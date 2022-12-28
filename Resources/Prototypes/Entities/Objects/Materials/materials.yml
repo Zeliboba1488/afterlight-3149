@@ -50,6 +50,11 @@
       - cloth
       - cloth_2
       - cloth_3
+  # AFTERLIGHT EDIT
+  - type: Construction
+    graph: AfterlightCloth
+    node: Cloth
+  # END AFTERLIGHT EDIT
 
 - type: entity
   parent: MaterialCloth
