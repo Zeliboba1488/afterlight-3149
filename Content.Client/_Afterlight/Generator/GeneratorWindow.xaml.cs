@@ -38,12 +38,14 @@ public sealed partial class GeneratorWindow : FancyWindow
 
     public void Update(SolidFuelGeneratorComponentBuiState state)
     {
+        var oldState = _lastState;
+        _lastState = state;
         // ReSharper disable once CompareOfFloatsByEqualityOperator
-        if (_lastState?.TargetPower != state.TargetPower)
+        if (oldState?.TargetPower != state.TargetPower)
             TargetPower.OverrideValue((int)(state.TargetPower / 1000.0f));
         Efficiency.Text = SharedGeneratorSystem.CalcFuelEfficiency(state.TargetPower, state.OptimalPower).ToString("P1");
         FuelFraction.Value = state.RemainingFuel - (int) state.RemainingFuel;
         FuelLeft.Text = ((int) MathF.Floor(state.RemainingFuel)).ToString();
-        _lastState = state;
+
     }
 }
