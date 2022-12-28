@@ -98,6 +98,8 @@
           Quantity: 3
   - type: Tag
     tags: []
+  - type: Item
+    size: 1
 
 
 - type: entity
