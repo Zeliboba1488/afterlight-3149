@@ -7,6 +7,8 @@
         - CitadelAsteroidsFallback
         - CitadelFailsafe
         - AfterlightAsteroidsStandard
+        - AfterlightAsteroidsWastes
+        - AfterlightAsteroidsEmptiness
     - type: ShipSpawning
       loadedSpawnArea: 8
     - type: StructurePlacement

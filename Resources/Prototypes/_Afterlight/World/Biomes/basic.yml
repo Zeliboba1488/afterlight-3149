@@ -60,3 +60,28 @@
         - 0.3, 0.7
       noiseChannel: Carver
     - type: RadioInterferingChunk
+
+- type: biome
+  id: AfterlightAsteroidsEmptiness
+  priority: 2
+  noiseRanges:
+    Temperature:
+      - 0.0, 0.1
+    Wreck:
+      - 0.5, 0.6
+  chunkComponents:
+    - type: DebrisFeaturePlacerController
+      densityNoiseChannel: Density
+    - type: SimpleDebrisSelector
+      debrisTable:
+        - id: AfterlightAsteroidDebrisSmall
+        - id: AfterlightAsteroidDebrisMedium
+        - id: AfterlightAsteroidDebrisLarge
+          prob: 0.7
+        - id: AfterlightAsteroidDebrisLarger
+          prob: 0.4
+    - type: NoiseRangeCarver
+      ranges:
+        - 0.3, 0.8
+      noiseChannel: Carver
+    - type: RadioInterferingChunk
