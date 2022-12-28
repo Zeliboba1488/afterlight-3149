@@ -50,6 +50,7 @@
           Quantity: 10
   - type: Produce
     seedId: wheat
+  - type: Fiberous
 
 - type: entity
   name: oat bushel
@@ -72,6 +73,7 @@
       reagents:
       - ReagentId: MilkOat
         Quantity: 5
+  - type: Fiberous
 
 - type: entity
   name: sugarcane
@@ -135,6 +137,7 @@
     solution: food
   - type: Extractable
     grindableSolutionName: food
+  - type: Fiberous
 
 - type: entity
   name: banana

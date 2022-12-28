@@ -52,6 +52,7 @@
         - key: enum.ShuttleConsoleUiKey.Key
           type: ShuttleConsoleBoundUserInterface
     - type: RadarConsole
+      maxRange: 512 # AFTERLIGHT EDIT
     - type: ExtensionCableReceiver
     - type: PointLight
       radius: 1.5
@@ -61,7 +62,7 @@
       rotateWhileAnchored: true
     # CITADEL EDIT
     - type: WorldLoader
-      radius: 256
+      radius: 512 # AFTERLIGHT EDIT
 
 - type: entity
   parent: BaseComputerShuttle
