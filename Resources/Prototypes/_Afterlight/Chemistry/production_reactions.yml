@@ -1,0 +1,13 @@
+﻿- type: reaction
+  id: AfterlightPlasticProduction
+  impact: Low
+  quantized: true
+  minTemp: 403.15
+  reactants:
+    Hydrogen:
+      amount: 10
+    Carbon:
+      amount: 5
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: SheetPlastic1
