@@ -65,7 +65,7 @@
 
 - type: entity
   id: AfterlightCrateSalvageMachineGoodies
-  suffix: Filled, Salvage Chemistry, Afterlight
+  suffix: Filled, Salvage Machine, Afterlight
   noSpawn: true # You should use SalvageMaterialCrateSpawner instead
   parent: CrateGenericSteel
   components:
@@ -86,3 +86,60 @@
         - id: MatterBinStockPart
           amount: 1
           maxAmount: 3
+
+- type: entity
+  id: AfterlightCrateSalvageBarGoodies
+  suffix: Filled, Salvage Bar, Afterlight
+  noSpawn: true # You should use SalvageMaterialCrateSpawner instead
+  parent: CrateGenericSteel
+  components:
+    - type: StorageFill
+      contents:
+        - id: DrinkAbsintheBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkBeer
+          amount: 1
+          prob: 0.1
+        - id: DrinkBlueCuracaoBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkCognacBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkColaBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkGinBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkGoldschlagerBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkGrenadineBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkCoffeeLiqueurBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkMelonLiquorBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkPatronBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkRumBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkVermouthBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkVodkaBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkWhiskeyBottleFull
+          amount: 1
+          prob: 0.1
+        - id: DrinkWineBottleFull
+          amount: 1
+          prob: 0.1
