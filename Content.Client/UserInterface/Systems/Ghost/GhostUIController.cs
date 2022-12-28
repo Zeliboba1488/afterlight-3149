@@ -4,6 +4,7 @@ using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Console;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -11,6 +12,7 @@ namespace Content.Client.UserInterface.Systems.Ghost;
 public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private readonly IConsoleHost _consoleHost = default!;
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
@@ -44,7 +46,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
 
         Gui.Visible = _system?.IsGhost ?? false;
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, _system?.Player?.TimeOfDeath);
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -100,8 +102,14 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
+        Gui.GhostRespawnPressed += GuiOnGhostRespawnPressed;
 
         UpdateGui();
+    }
+
+    private void GuiOnGhostRespawnPressed()
+    {
+        _consoleHost.ExecuteCommand("ghostrespawn");
     }
 
     public void UnloadGui()
@@ -113,6 +121,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
+        Gui.GhostRespawnPressed -= GuiOnGhostRespawnPressed;
 
         Gui.Hide();
     }
