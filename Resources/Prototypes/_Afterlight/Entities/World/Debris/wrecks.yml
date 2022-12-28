@@ -35,6 +35,10 @@
             prob: 0.2
           - id: SalvageMobSpawner
             prob: 0.7
+          - id: WaterTankFull
+            prob: 0.01
+          - id: WeldingFuelTankFull
+            prob: 0.01
           - id: WallSolid
             prob: 3
           - id: Grille
