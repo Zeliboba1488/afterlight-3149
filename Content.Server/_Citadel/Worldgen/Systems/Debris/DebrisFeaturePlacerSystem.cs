@@ -56,7 +56,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         }
 
         placer.OwnedDebris.Remove(component.LastKey);
-        var newChunk = GetOrCreateChunk(GetChunkCoords(uid), xform.MapUid!.Value);
+        var newChunk = GetOrCreateChunk(GetChunkCoords(uid, xform), xform.MapUid!.Value);
         if (newChunk is null || !TryComp<DebrisFeaturePlacerControllerComponent>(newChunk, out var newPlacer))
         {
             // Whelp.
@@ -113,14 +113,15 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         var owned = EnsureComp<OwnedDebrisComponent>(ev.SpawnedEntity);
         owned.OwningController = ev.DebrisPlacer;
         owned.LastKey = ev.Pos;
-
+#if DEBUG
         var xform = Transform(ev.SpawnedEntity);
-        var realchunk = GetOrCreateChunk(GetChunkCoords(ev.SpawnedEntity), xform.MapUid!.Value);
+        var realchunk = GetOrCreateChunk(GetChunkCoords(ev.SpawnedEntity, xform), xform.MapUid!.Value);
         if (realchunk != ev.DebrisPlacer)
         {
             var chunk = Comp<WorldChunkComponent>(realchunk!.Value);
             _sawmill.Error($"Debris thinks it's in chunk {GetChunkCoords(ev.DebrisPlacer)} when it's actually in {GetChunkCoords(realchunk!.Value)}. {ev.Pos} vs {xform.WorldPosition - WorldGen.ChunkToWorldCoords(chunk.Coordinates)}");
         }
+#endif
     }
 
     private void OnChunkLoaded(EntityUid uid, DebrisFeaturePlacerControllerComponent component, ref WorldChunkLoadedEvent args)
@@ -131,6 +132,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         component.DoSpawns = false; // Don't repeat yourself if this crashes.
 
         var chunk = Comp<WorldChunkComponent>(args.Chunk);
+        var controller = Comp<WorldControllerComponent>(chunk.Map);
         var densityChannel = component.DensityNoiseChannel;
         var density = _noiseIndex.Evaluate(uid, densityChannel, chunk.Coordinates + new Vector2(0.5f, 0.5f));
         if (density == 0)
@@ -188,7 +190,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
                 }
             }
 
-            _deferred.SpawnEntityDeferred(debrisFeatureEv.DebrisProto, coords, new TieDebrisToFeaturePlacerEvent(args.Chunk, point));
+            _deferred.SpawnEntityDeferred(debrisFeatureEv.DebrisProto, coords, new TieDebrisToFeaturePlacerEvent(args.Chunk, point, controller));
         }
 
         if (failures > 0)
@@ -217,11 +219,13 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     {
         public EntityUid DebrisPlacer;
         public Vector2 Pos;
+        public WorldControllerComponent Controller; // Included for performance reasons.
 
-        public TieDebrisToFeaturePlacerEvent(EntityUid debrisPlacer, Vector2 pos)
+        public TieDebrisToFeaturePlacerEvent(EntityUid debrisPlacer, Vector2 pos, WorldControllerComponent controller)
         {
             DebrisPlacer = debrisPlacer;
             Pos = pos;
+            Controller = controller;
         }
     }
 }

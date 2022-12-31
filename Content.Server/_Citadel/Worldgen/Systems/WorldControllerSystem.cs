@@ -62,6 +62,8 @@ public sealed class WorldControllerSystem : EntitySystem
         //TODO: Maybe don't allocate a big collection every frame?
         var chunksToLoad = new Dictionary<EntityUid, Dictionary<Vector2i, List<EntityUid>>>();
 
+        var metaQuery = GetEntityQuery<MetaDataComponent>();
+
         foreach (var controller in EntityQuery<WorldControllerComponent>())
         {
             chunksToLoad[controller.Owner] = new();
@@ -69,7 +71,9 @@ public sealed class WorldControllerSystem : EntitySystem
             List<Vector2i>? chunksToRemove = null;
             foreach (var (idx, chunk) in controller.Chunks)
             {
-                if (!Deleted(chunk) && !Terminating(chunk))
+                if (metaQuery.TryGetComponent(chunk, out var meta))
+                    continue;
+                if (!Deleted(chunk, meta))
                     continue;
 
                 chunksToRemove ??= new(8);

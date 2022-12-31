@@ -13,16 +13,21 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
         var e = EntityQueryEnumerator<LocalityLoaderComponent, TransformComponent>();
         var loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
+        var controllerQuery = GetEntityQuery<WorldControllerComponent>();
 
         while (e.MoveNext(out var loadable, out var xform))
         {
             var coords = GetChunkCoords(xform.Owner, xform);
+
+            if (!controllerQuery.TryGetComponent(xform.MapUid, out var controller))
+                return;
+
             var done = false;
             for (var i = -1; i < 2 && !done; i++)
             {
                 for (var j = -1; j < 2 && !done; j++)
                 {
-                    var chunk = GetOrCreateChunk(coords + (i, j), xform.MapUid!.Value);
+                    var chunk = GetOrCreateChunk(coords + (i, j), xform.MapUid!.Value, controller);
                     if (!loadedQuery.TryGetComponent(chunk, out var loaded) || loaded.Loaders is null)
                         continue;
 

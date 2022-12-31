@@ -1,6 +1,7 @@
 ﻿using Content.Server._Citadel.Worldgen.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Citadel.Worldgen.Systems;
 
@@ -14,38 +15,28 @@ public abstract class BaseWorldSystem : EntitySystem
     [Dependency] private readonly WorldControllerSystem _worldController = default!;
 
     /// <summary>
-    /// Gets a chunk's coordinates in chunk space as an integer value.
+    /// Gets an entity's coordinates in chunk space as an integer value.
     /// </summary>
     /// <param name="ent"></param>
     /// <param name="xform"></param>
     /// <returns>Chunk space coordinates</returns>
     [Pure]
-    public Vector2i GetChunkCoords(EntityUid ent, TransformComponent? xform = null)
+    public Vector2i GetChunkCoords(EntityUid ent, TransformComponent xform)
     {
-        if (!Resolve(ent, ref xform))
-            throw new Exception("Failed to resolve transform, somehow.");
-
-        if (TryComp<WorldChunkComponent>(ent, out var chunk))
-            return chunk.Coordinates;
+        DebugTools.Assert(!HasComp<WorldChunkComponent>(ent));
 
         return WorldGen.WorldToChunkCoords(xform.WorldPosition).Floored();
     }
 
     /// <summary>
-    /// Gets a chunk's coordinates in chunk space as a floating point value.
+    /// Gets an entity's coordinates in chunk space as a floating point value.
     /// </summary>
     /// <param name="ent"></param>
     /// <param name="xform"></param>
     /// <returns>Chunk space coordinates</returns>
     [Pure]
-    public Vector2 GetFloatingChunkCoords(EntityUid ent, TransformComponent? xform = null)
+    public Vector2 GetFloatingChunkCoords(EntityUid ent, TransformComponent xform)
     {
-        if (!Resolve(ent, ref xform))
-            throw new Exception("Failed to resolve transform, somehow.");
-
-        if (TryComp<WorldChunkComponent>(ent, out var chunk))
-            return chunk.Coordinates;
-
         return WorldGen.WorldToChunkCoords(xform.WorldPosition);
     }
 
@@ -56,8 +47,8 @@ public abstract class BaseWorldSystem : EntitySystem
     /// <param name="map">Map the chunk is in.</param>
     /// <returns>A chunk, if available.</returns>
     [Pure]
-    public EntityUid? GetOrCreateChunk(Vector2i chunk, EntityUid map)
+    public EntityUid? GetOrCreateChunk(Vector2i chunk, EntityUid map, WorldControllerComponent? controller = null)
     {
-        return _worldController.GetOrCreateChunk(chunk, map);
+        return _worldController.GetOrCreateChunk(chunk, map, controller);
     }
 }
