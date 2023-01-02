@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Power.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using JetBrains.Annotations;
