@@ -409,8 +409,6 @@
   - ElectromagneticTheory
   unlockedRecipes:
   - WallmountSubstationElectronics
-  - WallmountGeneratorElectronics
-  - WallmountGeneratorAPUElectronics
 
 - type: technology
   name: technologies-basic-powercell-printing
