@@ -140,7 +140,6 @@
   unlockedRecipes:
   - ChemMasterMachineCircuitboard
   - CrewMonitoringComputerCircuitboard
-  - HandheldCrewMonitor
   - BiomassReclaimerMachineCircuitboard
 
 - type: technology
