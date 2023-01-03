@@ -26,7 +26,7 @@
           - id: CrateEngineeringCableBulk
             prob: 0.03
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: AfterlightCrateSalvageMachineGoodies
             prob: 0.03
           - id: CrateSalvageEquipment
@@ -58,7 +58,7 @@
           - id: CrateSalvageEquipment
             prob: 0.03
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: SalvageCanisterSpawner
             prob: 0.2
         FloorSteel:
@@ -70,7 +70,7 @@
           - id: AfterlightCrateSalvageChemistyGoodies
             prob: 0.03
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: CrateSalvageEquipment
             prob: 0.03
           - id: SalvageMobSpawner
@@ -137,7 +137,7 @@
           - id: CrateEngineeringCableBulk
             prob: 0.03
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: AfterlightCrateSalvageBarGoodies
             prob: 0.3
           - id: CrateSalvageEquipment
@@ -169,7 +169,7 @@
           - id: CrateSalvageEquipment
             prob: 0.03
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: SalvageCanisterSpawner
             prob: 0.2
         FloorWood:
@@ -181,7 +181,7 @@
           - id: AfterlightCrateSalvageBarGoodies
             prob: 0.3
           - id: AfterlightCrateFoodMRERandom
-            prob: 0.03
+            prob: 0.0015
           - id: CrateSalvageEquipment
             prob: 0.03
           - id: SalvageMobSpawner

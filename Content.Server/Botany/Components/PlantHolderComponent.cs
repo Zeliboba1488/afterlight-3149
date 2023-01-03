@@ -8,7 +8,7 @@ namespace Content.Server.Botany.Components
         public TimeSpan UpdateDelay = TimeSpan.FromSeconds(3);
 
         [ViewVariables]
-        public int LastProduce;
+        public float LastProduce;
 
         [ViewVariables(VVAccess.ReadWrite)]
         public int MissingGas;
@@ -40,7 +40,7 @@ namespace Content.Server.Botany.Components
         public float Toxins { get; set; }
 
         [ViewVariables(VVAccess.ReadWrite)]
-        public int Age { get; set; }
+        public float Age { get; set; }
 
         [ViewVariables(VVAccess.ReadWrite)]
         public int SkipAging { get; set; }
