@@ -22,7 +22,7 @@ namespace Content.Server.Nutrition.Components
             set => _baseDecayRate = value;
         }
         [DataField("baseDecayRate")]
-        private float _baseDecayRate = 0.01666666666f;
+        private float _baseDecayRate = 0.01666666666f * (1/30.0f);
 
         [ViewVariables(VVAccess.ReadWrite)]
         public float ActualDecayRate
