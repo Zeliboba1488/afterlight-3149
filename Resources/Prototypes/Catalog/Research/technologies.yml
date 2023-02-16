@@ -140,7 +140,6 @@
   unlockedRecipes:
   - ChemMasterMachineCircuitboard
   - CrewMonitoringComputerCircuitboard
-  - HandheldCrewMonitor
   - BiomassReclaimerMachineCircuitboard
 
 - type: technology
@@ -409,8 +408,6 @@
   - ElectromagneticTheory
   unlockedRecipes:
   - WallmountSubstationElectronics
-  - WallmountGeneratorElectronics
-  - WallmountGeneratorAPUElectronics
 
 - type: technology
   name: technologies-basic-powercell-printing

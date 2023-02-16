@@ -40,8 +40,8 @@ namespace Content.Server.Botany.Systems
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
 
-        public const float HydroponicsSpeedMultiplier = 1f;
-        public const float HydroponicsConsumptionMultiplier = 4f;
+        public const float HydroponicsSpeedMultiplier = (1 / 40.0f);
+        public const float HydroponicsConsumptionMultiplier = 1f;
 
         public override void Initialize()
         {
