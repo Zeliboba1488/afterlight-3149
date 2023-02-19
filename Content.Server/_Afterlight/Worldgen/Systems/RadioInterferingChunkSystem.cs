@@ -16,7 +16,7 @@ public sealed class RadioInterferingChunkSystem : BaseWorldSystem
         SubscribeLocalEvent<RadioReceiveAttemptEvent>(OnTryHeadsetTransmit);
     }
 
-    private void OnTryHeadsetTransmit(ref RadioReceiveAttemptEvent ev)
+    private void OnTryHeadsetTransmit(RadioReceiveAttemptEvent ev)
     {
         if (ev.RadioSource is null)
             return;
