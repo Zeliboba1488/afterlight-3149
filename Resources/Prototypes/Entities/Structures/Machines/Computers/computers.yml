@@ -80,6 +80,9 @@
       state: generic_keys
   - type: Computer
     board: ShuttleConsoleCircuitboard
+  # AFTERLIGHT EDIT
+  - type: WorldLoader
+  # END AFTERLIGHT EDIT
 
 - type: entity
   parent: BaseComputerShuttle
@@ -108,6 +111,10 @@
     color: "#c94242"
   - type: Computer
     board: SyndicateShuttleConsoleCircuitboard
+  # AFTERLIGHT EDIT
+  - type: WorldLoader
+    radius: 1536
+  # END AFTERLIGHT EDIT
 
 - type: entity
   parent: BaseComputerShuttle
