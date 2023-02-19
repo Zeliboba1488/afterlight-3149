@@ -1,5 +1,6 @@
 ﻿using Content.Server._Afterlight.Worldgen.Components;
 using Content.Server._Citadel.Worldgen.Systems;
+using Content.Server.Radio;
 using Content.Server.Radio.EntitySystems;
 
 namespace Content.Server._Afterlight.Worldgen.Systems;
@@ -12,15 +13,17 @@ public sealed class RadioInterferingChunkSystem : BaseWorldSystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<TryHeadsetTransmitEvent>(OnTryHeadsetTransmit);
+        SubscribeLocalEvent<RadioReceiveAttemptEvent>(OnTryHeadsetTransmit);
     }
 
-    private void OnTryHeadsetTransmit(ref TryHeadsetTransmitEvent ev)
+    private void OnTryHeadsetTransmit(ref RadioReceiveAttemptEvent ev)
     {
-        var xform = Transform(ev.Transmitter);
-        var chunk = GetOrCreateChunk(GetChunkCoords(ev.Transmitter, xform), xform.MapUid!.Value);
+        if (ev.RadioSource is null)
+            return;
+        var xform = Transform(ev.RadioSource.Value);
+        var chunk = GetOrCreateChunk(GetChunkCoords(ev.RadioSource.Value, xform), xform.MapUid!.Value);
         if (TryComp<RadioInterferingChunkComponent>(chunk, out var interference))
-            ev.Cancelled = interference.AllowHighPower ? !ev.HighPower : true;
+            ev.Cancel();
 
     }
 }

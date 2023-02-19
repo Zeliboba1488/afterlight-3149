@@ -86,4 +86,9 @@ public enum LogType
     Teleport = 81,
     EntityDelete = 82,
     Vote = 83,
+
+    // Afterlight edits
+    ALSpawnVessel = -3149000,
+    ALPlacedStructure = -3149001,
+    // End afterlight edits
 }
