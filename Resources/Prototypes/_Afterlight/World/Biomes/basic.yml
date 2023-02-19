@@ -1,4 +1,4 @@
-﻿- type: biome
+﻿- type: citadelBiome
   id: AfterlightAsteroidsStandard
   priority: 0
   noiseRanges: {}
@@ -28,7 +28,7 @@
       noiseChannel: Carver
     - type: RadioInterferingChunk
 
-- type: biome
+- type: citadelBiome
   id: AfterlightAsteroidsWastes
   priority: 1
   noiseRanges:
@@ -61,7 +61,7 @@
       noiseChannel: Carver
     - type: RadioInterferingChunk
 
-- type: biome
+- type: citadelBiome
   id: AfterlightAsteroidsEmptiness
   priority: 2
   noiseRanges:

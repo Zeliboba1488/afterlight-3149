@@ -1,4 +1,5 @@
-﻿using Content.Server.Chemistry.Components.SolutionManager;
+﻿using System.Linq;
+using Content.Server.Chemistry.Components.SolutionManager;
 using Content.Server.Power.Components;
 using Content.Shared._Afterlight.Generator;
 using Content.Shared.Chemistry.Components;
@@ -74,7 +75,7 @@ public sealed class GeneratorSystem : SharedGeneratorSystem
         if (!TryComp(args.Used, out MaterialComponent? mat) || !TryComp(args.Used, out StackComponent? stack) || !TryComp(uid, out FuelGeneratorComponent? generator))
             return;
 
-        if (!mat.MaterialIds.Contains(component.FuelMaterial))
+        if (!mat.Materials.Keys.ToList().Contains(component.FuelMaterial))
             return;
 
         generator.RemainingFuel += stack.Count * component.Multiplier;
