@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
@@ -28,16 +29,22 @@ namespace Content.Server.Research.Systems
         /// Gets a server based on it's unique numeric id.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="serverUid"></param>
+        /// <param name="serverComponent"></param>
         /// <returns></returns>
-        public ResearchServerComponent? GetServerById(int id)
+        public bool TryGetServerById(int id, [NotNullWhen(true)] out EntityUid? serverUid, [NotNullWhen(true)] out ResearchServerComponent? serverComponent)
         {
+            serverUid = null;
+            serverComponent = null;
             foreach (var server in EntityQuery<ResearchServerComponent>())
             {
-                if (server.Id == id && CanRun(server.Owner))
-                    return server;
+                if (server.Id != id)
+                    continue;
+                serverUid = server.Owner;
+                serverComponent = server;
+                return true;
             }
-
-            return null;
+            return false;
         }
 
         /// <summary>
@@ -46,7 +53,15 @@ namespace Content.Server.Research.Systems
         /// <returns></returns>
         public string[] GetServerNames()
         {
-            return EntityQuery<ResearchServerComponent>(true).Where(x => CanRun(x.Owner)).Select(x => x.ServerName).ToArray();
+            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var list = new string[allServers.Length];
+
+            for (var i = 0; i < allServers.Length; i++)
+            {
+                list[i] = allServers[i].ServerName;
+            }
+
+            return list;
         }
 
         /// <summary>
@@ -55,7 +70,15 @@ namespace Content.Server.Research.Systems
         /// <returns></returns>
         public int[] GetServerIds()
         {
-            return EntityQuery<ResearchServerComponent>(true).Where(x => CanRun(x.Owner)).Select(x => x.Id).ToArray();
+            var allServers = EntityQuery<ResearchServerComponent>(true).ToArray();
+            var list = new int[allServers.Length];
+
+            for (var i = 0; i < allServers.Length; i++)
+            {
+                list[i] = allServers[i].Id;
+            }
+
+            return list;
         }
 
         public override void Update(float frameTime)

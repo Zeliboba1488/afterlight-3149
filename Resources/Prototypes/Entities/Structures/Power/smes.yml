@@ -60,6 +60,9 @@
     - type: Machine
       board: SMESMachineCircuitboard
     - type: StationInfiniteBatteryTarget
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: StrongMetallic
 
 # SMES' in use
 
@@ -69,8 +72,8 @@
   suffix: Basic, 8MW
   components:
   - type: Battery
-    maxCharge: 8000000
-    startingCharge: 8000000
+    maxCharge: 1296000000
+    startingCharge: 1296000000
 
 - type: entity
   parent: SMESBasic
